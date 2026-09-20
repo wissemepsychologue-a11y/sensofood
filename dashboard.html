@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Research Dashboard | SensoFood</title>
+
+    <link rel="stylesheet" href="../static/style.css">
+
+    <!-- Radar Chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<header class="header">
+    <div class="container">
+
+        <div class="logo">
+            <h1>SensoFood</h1>
+            <span>Food-Sensory Research Platform</span>
+        </div>
+
+        <nav class="navbar">
+            <a href="index.html">Home</a>
+            <a href="assessment.html">Assessment</a>
+            <a href="result.html">Results</a>
+            <a href="about.html">About</a>
+        </nav>
+
+    </div>
+</header>
+
+
+<section class="page-header">
+    <div class="container">
+
+        <h1>Research Dashboard</h1>
+
+        <p>
+            Overview of food-sensory research data.
+        </p>
+
+    </div>
+</section>
+
+
+<main>
+
+<div class="container results-container">
+
+
+    <!-- ================================================= -->
+    <!-- RESEARCH OVERVIEW -->
+    <!-- ================================================= -->
+
+    <section class="result-card">
+
+        <h2>Research Overview</h2>
+
+        <div class="result-score" id="participantCount">
+            0
+        </div>
+
+        <div class="result-label">
+            Participants
+        </div>
+
+        <p>
+            Number of participants currently included
+            in the research database.
+        </p>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- SENSORY DIMENSIONS -->
+    <!-- ================================================= -->
+
+    <section>
+
+        <div class="section-title">
+
+            <h2>Sensory Dimensions</h2>
+
+            <p>
+                The SensoFood assessment explores
+                five food-sensory dimensions.
+            </p>
+
+        </div>
+
+
+        <div class="cards-grid">
+
+            <div class="result-card">
+                <h3>Olfactory</h3>
+                <p>Smell-related responses.</p>
+            </div>
+
+            <div class="result-card">
+                <h3>Taste</h3>
+                <p>Taste-related responses.</p>
+            </div>
+
+            <div class="result-card">
+                <h3>Texture</h3>
+                <p>Food texture responses.</p>
+            </div>
+
+            <div class="result-card">
+                <h3>Temperature</h3>
+                <p>Temperature-related responses.</p>
+            </div>
+
+            <div class="result-card">
+                <h3>Visual</h3>
+                <p>Visual food perception.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- PARTICIPANTS -->
+    <!-- ================================================= -->
+
+    <section class="result-card">
+
+        <h2>Participants</h2>
+
+        <div style="overflow-x:auto;">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Participant ID</th>
+                        <th>Age</th>
+                        <th>Group</th>
+                        <th>Overall</th>
+                        <th>Profile</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="participantsTableBody">
+
+                    <tr>
+                        <td colspan="5">
+                            Loading participant data...
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- SELECTED PARTICIPANT PROFILE -->
+    <!-- ================================================= -->
+
+    <section
+        class="result-card"
+        id="participantProfile"
+        style="display:none;"
+    >
+
+        <h2>Participant Profile</h2>
+
+        <div class="cards-grid">
+
+            <div>
+                <strong>Participant ID</strong>
+                <p id="profileId">—</p>
+            </div>
+
+            <div>
+                <strong>Age</strong>
+                <p id="profileAge">—</p>
+            </div>
+
+            <div>
+                <strong>Group</strong>
+                <p id="profileGroup">—</p>
+            </div>
+
+            <div>
+                <strong>Overall</strong>
+                <p id="profileOverall">—</p>
+            </div>
+
+            <div>
+                <strong>Food Acceptance</strong>
+                <p id="profileAcceptance">—</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- SENSORY FINGERPRINT -->
+    <!-- ================================================= -->
+
+    <section
+        class="result-card"
+        id="fingerprintSection"
+        style="display:none;"
+    >
+
+        <h2>Individual Sensory Fingerprint</h2>
+
+        <p>
+            Multidimensional representation of the participant's
+            food-sensory response pattern.
+        </p>
+
+        <div
+            style="
+                max-width:650px;
+                margin:30px auto;
+                position:relative;
+                height:450px;
+            "
+        >
+
+            <canvas id="sensoryRadar"></canvas>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- DETAILED RESPONSES -->
+    <!-- ================================================= -->
+
+    <section
+        class="result-card"
+        id="answersSection"
+        style="display:none;"
+    >
+
+        <h2>Assessment Responses</h2>
+
+        <p>
+            Detailed responses are visible only to the researcher.
+        </p>
+
+        <div style="overflow-x:auto;">
+
+            <table>
+
+                <thead>
+
+                    <tr>
+                        <th>Question</th>
+                        <th>Response</th>
+                    </tr>
+
+                </thead>
+
+                <tbody id="answersTableBody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- RESEARCH STATUS -->
+    <!-- ================================================= -->
+
+    <section class="info-box">
+
+        <h3>Research Status</h3>
+
+        <p id="dashboardStatus">
+            Loading research data...
+        </p>
+
+        <p>
+            Detailed participant sensory profiles are available
+            to the researcher through the dashboard.
+        </p>
+
+    </section>
+
+
+</div>
+
+</main>
+
+
+<footer>
+
+    <div class="container">
+
+        <p>SensoFood Research Prototype</p>
+
+        <p>Digital Food-Sensory Research Platform</p>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+/* ===================================================== */
+/* GLOBAL DATA */
+/* ===================================================== */
+
+let participantsData = [];
+let radarChart = null;
+
+
+/* ===================================================== */
+/* LOAD DASHBOARD */
+/* ===================================================== */
+
+async function loadDashboard() {
+
+    const countElement =
+        document.getElementById("participantCount");
+
+    const tableBody =
+        document.getElementById("participantsTableBody");
+
+    const statusElement =
+        document.getElementById("dashboardStatus");
+
+
+    try {
+
+        const response =
+            await fetch("/api/dashboard");
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Unable to load dashboard data."
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        participantsData =
+            data.participants || [];
+
+
+        /* PARTICIPANT COUNT */
+
+        countElement.textContent =
+            participantsData.length;
+
+
+        /* TABLE */
+
+        tableBody.innerHTML = "";
+
+
+        if (participantsData.length === 0) {
+
+            tableBody.innerHTML = `
+
+                <tr>
+
+                    <td colspan="5">
+
+                        No participants have been added yet.
+
+                    </td>
+
+                </tr>
+
+            `;
+
+        }
+
+
+        else {
+
+            participantsData.forEach(
+                function(participant) {
+
+                    const row =
+                        document.createElement("tr");
+
+
+                    /*
+                     * app.py returns sensory results
+                     * inside participant.results
+                     */
+
+                    const results =
+                        participant.results || {};
+
+
+                    const overall =
+                        results.overall !== null &&
+                        results.overall !== undefined
+                            ? results.overall
+                            : "—";
+
+
+                    row.innerHTML = `
+
+                        <td>
+                            ${escapeHtml(
+                                participant.participant_id
+                            )}
+                        </td>
+
+                        <td>
+                            ${participant.age ?? "—"}
+                        </td>
+
+                        <td>
+                            ${escapeHtml(
+                                participant.group ?? "—"
+                            )}
+                        </td>
+
+                        <td>
+                            ${overall}
+                        </td>
+
+                        <td>
+
+                            <button
+                                type="button"
+                                onclick="viewParticipant('${escapeAttribute(participant.participant_id)}')"
+                            >
+                                View
+                            </button>
+
+                        </td>
+
+                    `;
+
+
+                    tableBody.appendChild(row);
+
+                }
+            );
+
+        }
+
+
+        statusElement.textContent =
+            "Research data loaded successfully.";
+
+    }
+
+
+    catch (error) {
+
+        console.error(error);
+
+
+        countElement.textContent =
+            "—";
+
+
+        tableBody.innerHTML = `
+
+            <tr>
+
+                <td colspan="5">
+
+                    Unable to load research data.
+
+                </td>
+
+            </tr>
+
+        `;
+
+
+        statusElement.textContent =
+            "Unable to connect to the research database.";
+
+    }
+
+}
+
+
+/* ===================================================== */
+/* VIEW PARTICIPANT */
+/* ===================================================== */
+
+async function viewParticipant(participantId) {
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/dashboard/participant/" +
+                encodeURIComponent(participantId)
+            );
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                "Unable to load participant."
+            );
+
+        }
+
+
+        const data =
+            await response.json();
+
+
+        if (!data.success) {
+
+            throw new Error(
+                data.message ||
+                "Unable to load participant."
+            );
+
+        }
+
+
+        const participant =
+            data.participant || {};
+
+
+        const result =
+            data.result || {};
+
+
+        const assessment =
+            data.assessment || {};
+
+
+        /* ============================================= */
+        /* PROFILE */
+        /* ============================================= */
+
+        document.getElementById(
+            "profileId"
+        ).textContent =
+            participant.participant_id ?? "—";
+
+
+        document.getElementById(
+            "profileAge"
+        ).textContent =
+            participant.age ?? "—";
+
+
+        document.getElementById(
+            "profileGroup"
+        ).textContent =
+            participant.group ?? "—";
+
+
+        document.getElementById(
+            "profileOverall"
+        ).textContent =
+            result.overall !== null &&
+            result.overall !== undefined
+                ? result.overall + " / 5"
+                : "—";
+
+
+        document.getElementById(
+            "profileAcceptance"
+        ).textContent =
+            result.food_acceptance !== null &&
+            result.food_acceptance !== undefined
+                ? result.food_acceptance + " / 5"
+                : "—";
+
+
+        document.getElementById(
+            "participantProfile"
+        ).style.display = "block";
+
+
+        /* ============================================= */
+        /* RADAR CHART */
+        /* ============================================= */
+
+        if (result) {
+
+            document.getElementById(
+                "fingerprintSection"
+            ).style.display = "block";
+
+
+            createRadarChart(result);
+
+        }
+
+
+        /* ============================================= */
+        /* ANSWERS */
+        /* ============================================= */
+
+        const answersBody =
+            document.getElementById(
+                "answersTableBody"
+            );
+
+
+        answersBody.innerHTML = "";
+
+
+        if (
+            assessment.answers &&
+            typeof assessment.answers === "object"
+        ) {
+
+            document.getElementById(
+                "answersSection"
+            ).style.display = "block";
+
+
+            for (
+                let i = 1;
+                i <= 20;
+                i++
+            ) {
+
+                const answer =
+                    assessment.answers[String(i)];
+
+
+                const row =
+                    document.createElement("tr");
+
+
+                row.innerHTML = `
+
+                    <td>
+                        Question ${i}
+                    </td>
+
+                    <td>
+                        ${answer ?? "—"}
+                    </td>
+
+                `;
+
+
+                answersBody.appendChild(row);
+
+            }
+
+        }
+
+
+        else {
+
+            document.getElementById(
+                "answersSection"
+            ).style.display = "none";
+
+        }
+
+
+        /* ============================================= */
+        /* SCROLL TO PROFILE */
+        /* ============================================= */
+
+        document.getElementById(
+            "participantProfile"
+        ).scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+
+    }
+
+
+    catch (error) {
+
+        console.error(error);
+
+
+        alert(
+            "Unable to load participant data."
+        );
+
+    }
+
+}
+
+
+/* ===================================================== */
+/* CREATE RADAR CHART */
+/* ===================================================== */
+
+function createRadarChart(result) {
+
+    const canvas =
+        document.getElementById(
+            "sensoryRadar"
+        );
+
+
+    if (!canvas) {
+        return;
+    }
+
+
+    if (radarChart) {
+
+        radarChart.destroy();
+
+    }
+
+
+    radarChart =
+        new Chart(canvas, {
+
+            type: "radar",
+
+            data: {
+
+                labels: [
+
+                    "Olfactory",
+                    "Taste",
+                    "Texture",
+                    "Temperature",
+                    "Visual"
+
+                ],
+
+                datasets: [
+
+                    {
+
+                        label:
+                            "Sensory Response",
+
+                        data: [
+
+                            Number(result.olfactory) || 0,
+
+                            Number(result.taste) || 0,
+
+                            Number(result.texture) || 0,
+
+                            Number(result.temperature) || 0,
+
+                            Number(result.visual) || 0
+
+                        ],
+
+                        borderWidth: 2,
+
+                        pointRadius: 4,
+
+                        fill: true
+
+                    }
+
+                ]
+
+            },
+
+            options: {
+
+                responsive: true,
+
+                maintainAspectRatio: false,
+
+                scales: {
+
+                    r: {
+
+                        min: 1,
+
+                        max: 5,
+
+                        ticks: {
+
+                            stepSize: 1
+
+                        }
+
+                    }
+
+                },
+
+                plugins: {
+
+                    legend: {
+
+                        display: true
+
+                    }
+
+                }
+
+            }
+
+        });
+
+}
+
+
+/* ===================================================== */
+/* SECURITY / HTML ESCAPING */
+/* ===================================================== */
+
+function escapeHtml(value) {
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+function escapeAttribute(value) {
+
+    return String(value)
+        .replace(/\\/g, "\\\\")
+        .replace(/'/g, "\\'");
+
+}
+
+
+/* ===================================================== */
+/* START */
+/* ===================================================== */
+
+loadDashboard();
+
+</script>
+
+</body>
+</html>

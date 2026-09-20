@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SensoFood</title>
+    <link rel="stylesheet" href="../static/style.css">
+
+   
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+
+        <div class="nav-container">
+
+            <div class="logo">
+                SensoFood
+            </div>
+
+            <div class="nav-links">
+
+                <a href="{{ url_for('index') }}">
+                    Home
+                </a>
+
+                <a href="{{ url_for('consent') }}">
+                    Assessment
+                </a>
+
+                <a href="{{ url_for('about') }}">
+                    About
+                </a>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <!-- Hero / Introduction -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="hero-text">
+
+                <h1>
+                    SensoFood
+                </h1>
+
+                <h2>
+                    Sensory Food Assessment Platform
+                </h2>
+
+                <p>
+                    Sensory responses may vary between individuals.
+                    Understanding these differences can provide valuable
+                    information for sensory research and personalized
+                    sensory profiling.
+                </p>
+
+                <p>
+                    SensoFood is designed as a research-oriented platform
+                    that can support statistical analysis, sensory
+                    fingerprinting and data-driven research applications.
+                </p>
+
+                <!-- Learn More ONLY -->
+                <a href="{{ url_for('about') }}" class="btn btn-primary">
+                    Learn More
+                </a>
+
+            </div>
+
+
+            <div class="hero-image">
+
+                <img src="{{ url_for('static', filename='images/sensory.jpg') }}"
+                     alt="Sensory research">
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Main Features -->
+    <section class="features">
+
+        <div class="container">
+
+            <h2>
+                SensoFood Research Platform
+            </h2>
+
+            <p class="section-description">
+                A structured digital environment for studying individual
+                sensory responses to food.
+            </p>
+
+
+            <div class="feature-cards">
+
+                <!-- Assessment -->
+                <div class="feature-card">
+
+                    <h3>
+                        Sensory Assessment
+                    </h3>
+
+                    <p>
+                        Complete a structured assessment of sensory responses
+                        to different food characteristics.
+                    </p>
+
+                    <a href="{{ url_for('consent') }}"
+                       class="btn btn-secondary">
+                        Start Assessment
+                    </a>
+
+                </div>
+
+
+                <!-- Sensory Profile -->
+                <div class="feature-card">
+
+                    <h3>
+                        Sensory Profile
+                    </h3>
+
+                    <p>
+                        Explore individual sensory response patterns
+                        generated from the assessment.
+                    </p>
+
+                    <a href="{{ url_for('consent') }}"
+                       class="btn btn-secondary">
+                        Explore
+                    </a>
+
+                </div>
+
+
+                <!-- Research Dashboard -->
+                <div class="feature-card">
+
+                    <h3>
+                        Research Dashboard
+                    </h3>
+
+                    <p>
+                        Access research data and aggregated sensory
+                        information for authorized researchers.
+                    </p>
+
+                    <a href="{{ url_for('dashboard') }}"
+                       class="btn btn-secondary">
+                        Research Dashboard
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- Research Section -->
+    <section class="research-section">
+
+        <div class="container">
+
+            <h2>
+                SensoFood Research Prototype
+            </h2>
+
+            <p>
+                This platform is developed to support research on
+                sensory perception, individual differences and
+                sensory profiling.
+            </p>
+
+            <p>
+                The collected data can be used for statistical analysis,
+                psychometric research and the identification of individual
+                sensory response patterns.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- Assessment Call To Action -->
+    <section class="cta">
+
+        <div class="container">
+
+            <h2>
+                Ready to participate?
+            </h2>
+
+            <p>
+                Begin the sensory assessment by first reviewing the
+                information and consent page.
+            </p>
+
+            <a href="{{ url_for('consent') }}"
+               class="btn btn-primary">
+                Begin Assessment
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 SensoFood Research Platform
+        </p>
+
+    </footer>
+
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>

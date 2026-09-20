@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SensoFood | Results</title>
+
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+
+
+<body>
+
+<header class="header">
+
+    <div class="container">
+
+        <div class="logo">
+
+            <h1>SensoFood</h1>
+
+            <span>
+                Food-Sensory Research Platform
+            </span>
+
+        </div>
+
+
+        <nav class="navbar">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="assessment.html">
+                Assessment
+            </a>
+
+            <a href="result.html">
+                Results
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+
+<section class="page-header">
+
+    <div class="container">
+
+        <h1>
+            Your Food-Sensory Profile
+        </h1>
+
+        <p>
+            A visual summary of your sensory responses.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<main>
+
+    <div class="container results-container">
+
+
+        <!-- IMAGE --> 
+ 
+        <section class="image-feature"> 
+ 
+            <img 
+                src="../static/result.jpg" 
+                alt="Food sensory experience" 
+                class="feature-image" 
+            >
+
+            <div class="feature-text">
+
+                <h2>
+                    Food-Sensory Experience
+                </h2>
+
+                <p>
+                    This profile summarizes your responses
+                    across five food-related sensory dimensions.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- PARTICIPANT RESULT -->
+
+        <section class="result-card">
+
+            <h2>
+                Overall Sensory Profile
+            </h2>
+
+
+            <div
+                class="result-score"
+                id="overallScore"
+            >
+                —
+            </div>
+
+
+            <div
+                class="result-label"
+                id="overallLabel"
+            >
+                Loading result...
+            </div>
+
+
+            <p>
+                This value represents the overall response
+                index calculated from your assessment.
+            </p>
+
+        </section>
+
+
+
+        <!-- FIVE SENSORY DIMENSIONS -->
+
+        <section>
+
+            <div class="section-title">
+
+                <h2>
+                    Sensory Dimensions
+                </h2>
+
+                <p>
+                    Your responses are summarized across
+                    five sensory dimensions.
+                </p>
+
+            </div>
+
+
+
+            <div class="cards-grid">
+
+
+                <!-- OLFACTORY -->
+
+                <div class="result-card">
+
+                    <h3>
+                        Olfactory
+                    </h3>
+
+                    <div
+                        class="result-score"
+                        id="olfactoryScore"
+                    >
+                        —
+                    </div>
+
+                    <div
+                        class="result-label"
+                        id="olfactoryLabel"
+                    >
+                        Loading...
+                    </div>
+
+                </div>
+
+
+
+                <!-- TASTE -->
+
+                <div class="result-card">
+
+                    <h3>
+                        Taste
+                    </h3>
+
+                    <div
+                        class="result-score"
+                        id="tasteScore"
+                    >
+                        —
+                    </div>
+
+                    <div
+                        class="result-label"
+                        id="tasteLabel"
+                    >
+                        Loading...
+                    </div>
+
+                </div>
+
+
+
+                <!-- TEXTURE -->
+
+                <div class="result-card">
+
+                    <h3>
+                        Texture
+                    </h3>
+
+                    <div
+                        class="result-score"
+                        id="textureScore"
+                    >
+                        —
+                    </div>
+
+                    <div
+                        class="result-label"
+                        id="textureLabel"
+                    >
+                        Loading...
+                    </div>
+
+                </div>
+
+
+
+                <!-- TEMPERATURE -->
+
+                <div class="result-card">
+
+                    <h3>
+                        Temperature
+                    </h3>
+
+                    <div
+                        class="result-score"
+                        id="temperatureScore"
+                    >
+                        —
+                    </div>
+
+                    <div
+                        class="result-label"
+                        id="temperatureLabel"
+                    >
+                        Loading...
+                    </div>
+
+                </div>
+
+
+
+                <!-- VISUAL -->
+
+                <div class="result-card">
+
+                    <h3>
+                        Visual
+                    </h3>
+
+                    <div
+                        class="result-score"
+                        id="visualScore"
+                    >
+                        —
+                    </div>
+
+                    <div
+                        class="result-label"
+                        id="visualLabel"
+                    >
+                        Loading...
+                    </div>
+
+                </div>
+
+
+
+                <!-- FOOD ACCEPTANCE -->
+
+                <div class="result-card">
+
+                    <h3>
+                        Food Acceptance
+                    </h3>
+
+                    <div
+                        class="result-score"
+                        id="foodAcceptanceScore"
+                    >
+                        —
+                    </div>
+
+                    <div
+                        class="result-label"
+                        id="foodAcceptanceLabel"
+                    >
+                        Loading...
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- PARTICIPANT SUMMARY -->
+
+        <section class="result-card">
+
+            <h2>
+                Your Sensory Summary
+            </h2>
+
+            <div id="fingerprint">
+
+                <p>
+                    Your assessment responses have been
+                    processed into a multidimensional
+                    sensory profile.
+                </p>
+
+                <p>
+                    The detailed sensory fingerprint and
+                    research-level analysis are reserved
+                    for the researcher dashboard.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- INTERPRETATION -->
+
+        <section class="result-card">
+
+            <h2>
+                Preliminary Interpretation
+            </h2>
+
+            <p id="interpretation">
+
+                Your preliminary interpretation will appear
+                here after your assessment has been processed.
+
+            </p>
+
+        </section>
+
+
+
+        <!-- NOTICE -->
+
+        <section class="info-box">
+
+            <h3>
+                Research Notice
+            </h3>
+
+            <p>
+                This profile is part of the SensoFood
+                research prototype.
+            </p>
+
+            <p>
+                It does not constitute a clinical diagnosis.
+            </p>
+
+            <p>
+                The results describe responses recorded
+                during this assessment and should not be
+                interpreted as a medical or diagnostic result.
+            </p>
+
+        </section>
+
+
+
+        <!-- BUTTONS -->
+
+        <section class="results-actions">
+
+            <a
+                href="assessment.html"
+                class="btn btn-secondary"
+            >
+                Back to Assessment
+            </a>
+
+            <a
+                href="index.html"
+                class="btn btn-primary"
+            >
+                Return Home
+            </a>
+
+        </section>
+
+    </div>
+
+</main>
+
+
+
+<footer>
+
+    <div class="container">
+
+        <p>
+            SensoFood Research Prototype
+        </p>
+
+        <p>
+            Digital Food-Sensory Research Platform
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<script>
+
+document.addEventListener(
+    "DOMContentLoaded",
+    loadResults
+);
+
+
+async function loadResults() {
+
+    try {
+
+        const response = await fetch(
+            "/api/my-result"
+        );
+
+
+        const data = await response.json();
+
+
+        if (!response.ok || !data.success) {
+
+            showNoResult();
+
+            return;
+        }
+
+
+        const results = data.results;
+
+
+        // -------------------------------------------------
+        // DISPLAY RESULTS
+        // -------------------------------------------------
+
+        setResult(
+            "overall",
+            results.overall
+        );
+
+        setResult(
+            "olfactory",
+            results.olfactory
+        );
+
+        setResult(
+            "taste",
+            results.taste
+        );
+
+        setResult(
+            "texture",
+            results.texture
+        );
+
+        setResult(
+            "temperature",
+            results.temperature
+        );
+
+        setResult(
+            "visual",
+            results.visual
+        );
+
+        setResult(
+            "foodAcceptance",
+            results.food_acceptance
+        );
+
+
+        // -------------------------------------------------
+        // INTERPRETATION
+        // -------------------------------------------------
+
+        document.getElementById(
+            "interpretation"
+        ).textContent =
+            generateInterpretation(results);
+
+
+    }
+
+    catch (error) {
+
+        console.error(
+            "Error loading results:",
+            error
+        );
+
+        showNoResult();
+
+    }
+
+}
+
+
+
+// =========================================================
+// SET RESULT
+// =========================================================
+
+function setResult(
+    dimension,
+    value
+) {
+
+    const scoreElement =
+        document.getElementById(
+            dimension + "Score"
+        );
+
+    const labelElement =
+        document.getElementById(
+            dimension + "Label"
+        );
+
+
+    if (
+        !scoreElement ||
+        !labelElement
+    ) {
+
+        return;
+
+    }
+
+
+    if (
+        value === null ||
+        value === undefined
+    ) {
+
+        scoreElement.textContent = "—";
+
+        labelElement.textContent =
+            "No data";
+
+        return;
+
+    }
+
+
+    scoreElement.textContent =
+        Number(value).toFixed(2);
+
+
+    labelElement.textContent =
+        interpretScore(value);
+
+}
+
+
+
+// =========================================================
+// SCORE INTERPRETATION
+// =========================================================
+
+function interpretScore(
+    value
+) {
+
+    value = Number(value);
+
+
+    if (value < 2) {
+
+        return "Lower response";
+
+    }
+
+
+    if (value < 3) {
+
+        return "Mild response";
+
+    }
+
+
+    if (value < 4) {
+
+        return "Moderate response";
+
+    }
+
+
+    return "Higher response";
+
+}
+
+
+
+// =========================================================
+// OVERALL INTERPRETATION
+// =========================================================
+
+function generateInterpretation(
+    results
+) {
+
+    const values = [
+
+        results.olfactory,
+
+        results.taste,
+
+        results.texture,
+
+        results.temperature,
+
+        results.visual
+
+    ]
+    .filter(
+        value =>
+            value !== null &&
+            value !== undefined
+    )
+    .map(Number);
+
+
+    if (!values.length) {
+
+        return "No assessment data are available.";
+
+    }
+
+
+    const average =
+        values.reduce(
+            (sum, value) =>
+                sum + value,
+            0
+        ) / values.length;
+
+
+    if (average < 2) {
+
+        return (
+            "The assessment indicates " +
+            "relatively lower response levels " +
+            "across the measured sensory dimensions."
+        );
+
+    }
+
+
+    if (average < 3) {
+
+        return (
+            "The assessment indicates " +
+            "generally mild response levels " +
+            "across the measured sensory dimensions."
+        );
+
+    }
+
+
+    if (average < 4) {
+
+        return (
+            "The assessment indicates " +
+            "moderate response levels " +
+            "across the measured sensory dimensions."
+        );
+
+    }
+
+
+    return (
+        "The assessment indicates " +
+        "relatively higher response levels " +
+        "across the measured sensory dimensions."
+    );
+
+}
+
+
+
+// =========================================================
+// NO RESULT
+// =========================================================
+
+function showNoResult() {
+
+    document.getElementById(
+        "overallScore"
+    ).textContent = "—";
+
+
+    document.getElementById(
+        "overallLabel"
+    ).textContent =
+        "No assessment result available";
+
+
+    const dimensions = [
+
+        "olfactory",
+        "taste",
+        "texture",
+        "temperature",
+        "visual",
+        "foodAcceptance"
+
+    ];
+
+
+    dimensions.forEach(
+        dimension => {
+
+            const score =
+                document.getElementById(
+                    dimension + "Score"
+                );
+
+            const label =
+                document.getElementById(
+                    dimension + "Label"
+                );
+
+
+            if (score) {
+
+                score.textContent = "—";
+
+            }
+
+
+            if (label) {
+
+                label.textContent =
+                    "No data";
+
+            }
+
+        }
+    );
+
+
+    document.getElementById(
+        "interpretation"
+    ).textContent =
+        "No assessment result is currently available. Please complete the assessment first.";
+
+}
+
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Participants - SensoFood</title>
+
+    <!-- SensoFood CSS -->
+    <link rel="stylesheet" href="../static/style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         PARTICIPANT INFORMATION
+         ========================================= -->
+
+    <main class="page-container">
+
+
+        <h1>Participant Information</h1>
+
+
+        <form id="participantForm">
+
+
+            <!-- Participant ID -->
+
+            <div class="form-group">
+
+                <label for="participantId">
+                    Participant ID
+                </label>
+
+                <input
+                    type="text"
+                    id="participantId"
+                    name="participant_id"
+                    placeholder="Participant ID"
+                    required
+                >
+
+            </div>
+
+
+
+            <!-- Age -->
+
+            <div class="form-group">
+
+                <label for="participantAge">
+                    Age
+                </label>
+
+                <input
+                    type="number"
+                    id="participantAge"
+                    name="age"
+                    placeholder="Age"
+                    min="1"
+                    max="120"
+                    required
+                >
+
+            </div>
+
+
+
+            <!-- =================================
+                 GROUP
+                 ================================= -->
+
+            <div class="form-group">
+
+                <label for="participantGroup">
+                    Group
+                </label>
+
+                <select
+                    id="participantGroup"
+                    name="group"
+                    required
+                >
+
+                    <option value="" selected>
+                        Select Group
+                    </option>
+
+
+                    <!-- ACTIVE GROUP -->
+
+                    <option value="Neurotypical">
+                        Neurotypical
+                    </option>
+
+
+                    <!-- TEMPORARILY DISABLED GROUP -->
+
+                    <option value="Autistic" disabled>
+                        Autistic (Coming soon)
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <!-- Save Participant -->
+
+            <button
+                type="submit"
+                id="saveParticipantBtn"
+                class="btn btn-primary"
+            >
+                Save Participant
+            </button>
+
+
+        </form>
+
+
+    </main>
+
+
+
+    <!-- =========================================
+         FOOTER / NAVIGATION
+         ========================================= -->
+
+    
+
+
+    <!-- =========================================
+         MAIN JAVASCRIPT
+         ========================================= -->
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+
+
+    <!-- =========================================
+         PARTICIPANT PAGE SCRIPT
+         ========================================= -->
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function () {
+
+
+                /* =================================
+                   GET PAGE ELEMENTS
+                   ================================= */
+
+                const form =
+                    document.getElementById(
+                        "participantForm"
+                    );
+
+
+                const participantId =
+                    document.getElementById(
+                        "participantId"
+                    );
+
+
+                const participantAge =
+                    document.getElementById(
+                        "participantAge"
+                    );
+
+
+                const participantGroup =
+                    document.getElementById(
+                        "participantGroup"
+                    );
+
+
+
+                /* =================================
+                   START WITH EMPTY FORM
+                   
+                   A new participant must not see
+                   information from a previous
+                   participant.
+                   ================================= */
+
+                participantId.value = "";
+
+                participantAge.value = "";
+
+                participantGroup.value = "";
+
+
+
+                /* =================================
+                   GROUP SELECTION
+                   ================================= */
+
+                participantGroup.addEventListener(
+                    "change",
+                    function () {
+
+                        const selectedGroup =
+                            participantGroup.value;
+
+
+                        sessionStorage.setItem(
+                            "sensofood_participant_group",
+                            selectedGroup
+                        );
+
+                    }
+                );
+
+
+
+                /* =================================
+                   SAVE PARTICIPANT
+                   ================================= */
+
+                form.addEventListener(
+                    "submit",
+                    async function (event) {
+
+                        event.preventDefault();
+
+
+                        const id =
+                            participantId.value.trim();
+
+
+                        const age =
+                            participantAge.value;
+
+
+                        const group =
+                            participantGroup.value;
+
+
+
+                        /* =================================
+                           CHECK PARTICIPANT ID
+                           ================================= */
+
+                        if (!id) {
+
+                            alert(
+                                "Please enter Participant ID."
+                            );
+
+                            return;
+
+                        }
+
+
+
+                        /* =================================
+                           CHECK AGE
+                           ================================= */
+
+                        if (!age) {
+
+                            alert(
+                                "Please enter Age."
+                            );
+
+                            return;
+
+                        }
+
+
+
+                        /* =================================
+                           CHECK GROUP
+                           ================================= */
+
+                        if (!group) {
+
+                            alert(
+                                "Please select a Group."
+                            );
+
+                            return;
+
+                        }
+
+
+
+                        /* =================================
+                           SAVE CURRENT PARTICIPANT
+                           ================================= */
+
+                        sessionStorage.setItem(
+                            "sensofood_participant_id",
+                            id
+                        );
+
+
+                        sessionStorage.setItem(
+                            "sensofood_participant_age",
+                            age
+                        );
+
+
+                        sessionStorage.setItem(
+                            "sensofood_participant_group",
+                            group
+                        );
+
+
+
+                        /* =================================
+                           SEND TO FLASK
+                           ================================= */
+
+                        try {
+
+                            const response =
+                                await fetch(
+                                    "/api/participant",
+                                    {
+
+                                        method: "POST",
+
+                                        headers: {
+                                            "Content-Type":
+                                                "application/json"
+                                        },
+
+                                        body:
+                                            JSON.stringify({
+
+                                                participant_id:
+                                                    id,
+
+                                                age:
+                                                    Number(age),
+
+                                                group:
+                                                    group
+
+                                            })
+
+                                    }
+                                );
+
+
+                            const data =
+                                await response.json();
+
+
+
+                            /* =================================
+                               SERVER ERROR
+                               ================================= */
+
+                            if (!response.ok) {
+
+                                alert(
+                                    data.message ||
+                                    data.error ||
+                                    "Could not save participant."
+                                );
+
+                                return;
+
+                            }
+
+
+
+                            /* =================================
+                               SUCCESS
+                               ================================= */
+
+                            alert(
+                                "Participant saved successfully."
+                            );
+
+
+                        }
+
+
+                        catch (error) {
+
+                            console.error(error);
+
+                            alert(
+                                "Server connection error."
+                            );
+
+                        }
+
+                    }
+                );
+
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>
+    

@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Consent | SensoFood</title>
+
+    <link rel="stylesheet" href="../static/style.css">
+
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="container">
+
+        <div class="logo">
+
+            <h1>SensoFood</h1>
+
+            <span>Food-Sensory Research Platform</span>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<section class="page-header">
+
+    <div class="container">
+
+        <h1>Research Participation</h1>
+
+        <p>
+            Information and consent before starting the assessment.
+        </p>
+
+    </div>
+
+</section>
+
+
+<main>
+
+    <div class="container results-container">
+
+
+        <!-- INTRODUCTION -->
+
+        <section class="result-card">
+
+            <h2>Welcome to SensoFood</h2>
+
+            <p>
+                This platform explores individual sensory
+                responses related to food.
+            </p>
+
+            <p>
+                The assessment is designed to help researchers
+                understand differences in food-sensory experiences.
+            </p>
+
+        </section>
+
+
+        <!-- BEFORE YOU BEGIN -->
+
+        <section class="result-card">
+
+            <h2>Before You Begin</h2>
+
+            <ul>
+
+                <li>
+                    Participation is voluntary.
+                </li>
+
+                <li>
+                    You may stop the assessment at any time.
+                </li>
+
+                <li>
+                    Your responses will be used for research purposes.
+                </li>
+
+                <li>
+                    Please answer the questions according
+                    to your own sensory experience.
+                </li>
+
+            </ul>
+
+        </section>
+
+
+        <!-- PARTICIPANT AGREEMENT -->
+
+        <section class="result-card">
+
+            <h2>Participant Agreement</h2>
+
+            <p>
+                By continuing, you confirm that you have
+                read and understood the information above.
+            </p>
+
+            <label>
+
+                <input type="checkbox" id="consent">
+
+                I agree to participate in this research assessment.
+
+            </label>
+
+            <br><br>
+
+            <button
+                id="continueButton"
+                class="btn btn-primary"
+                disabled>
+
+                Continue
+
+            </button>
+
+        </section>
+
+
+        <!-- RESEARCH NOTICE -->
+
+        <section class="info-box">
+
+            <h3>Research Notice</h3>
+
+            <p>
+                SensoFood is a research prototype.
+            </p>
+
+            <p>
+                Participation does not constitute a clinical diagnosis.
+            </p>
+
+        </section>
+
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    <div class="container">
+
+        <p>SensoFood Research Prototype</p>
+
+        <p>Digital Food-Sensory Research Platform</p>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+    const consent = document.getElementById("consent");
+
+    const continueButton =
+        document.getElementById("continueButton");
+
+
+    consent.addEventListener("change", function () {
+
+        continueButton.disabled = !this.checked;
+
+    });
+
+
+    continueButton.addEventListener("click", function () {
+
+        window.location.href = "participants.html";
+
+    });
+
+</script>
+
+<script src="../static/script.js"></script>
+</body>
+
+</html>
