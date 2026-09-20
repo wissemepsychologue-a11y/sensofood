@@ -8,7 +8,8 @@ from functools import wraps
 # SENSOFOOD APPLICATION
 # =========================================================
 
-app = Flask(__name__)
+app = Flask(__name__,
+ template_folder="templates", static_folder="static")
 
 # =========================================================
 # APPLICATION CONFIGURATION
